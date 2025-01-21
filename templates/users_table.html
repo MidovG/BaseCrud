@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Users</title>
+    </head>
+    <body>
+        <table>
+            <thead><th>Id</th><th>Email</th><th>UserName</th><th>Password</th><th>PhoneNumber</th><th>DateOfBirth</th></thead>
+            {{range . }}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.Email}}</td>
+                <td>{{.UserName}}</td>
+                <td>{{.Password}}</td>
+                <td>{{.PhoneNumber}}</td>
+                <td>{{.DateOfBirth}}</td>
+            </tr>
+            {{end}}
+        </table>
+    </body>
+</html>
