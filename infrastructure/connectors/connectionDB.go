@@ -5,15 +5,12 @@ import (
 	"log"
 )
 
-var database *sql.DB
-
-func Connection() {
+func Connection() *sql.DB {
 	db, err := sql.Open("mysql", "root:@/base_crud_bd")
 
 	if err != nil {
 		log.Println(err)
 	}
 
-	database = db
-	defer db.Close()
+	return db
 }
