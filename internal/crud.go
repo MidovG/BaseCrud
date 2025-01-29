@@ -13,10 +13,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var database *sql.DB
+var database *sql.DB = connectors.Connection()
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	rows, err := database.Query("select * from base_crud_bd.users")
 
 	if err != nil {
@@ -41,7 +40,6 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	params := mux.Vars(r)
 
 	rows, err := database.Query("select * from base_crud_bd.users where id = ?;", params["id"])
@@ -67,7 +65,6 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	if r.Method == http.MethodPost {
 		err := r.ParseForm()
 		if err != nil {
@@ -102,7 +99,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteUserById(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	params := mux.Vars(r)
 
 	_, err := database.Exec("delete from base_crud_bd.users where id = ?;", params["id"])
@@ -114,7 +110,6 @@ func DeleteUserById(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditPage(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	vars := mux.Vars(r)
 	id := vars["id"]
 
@@ -132,7 +127,6 @@ func EditPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
-	database := connectors.Connection()
 	if r.Method == http.MethodPost {
 		err := r.ParseForm()
 		if err != nil {
