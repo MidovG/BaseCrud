@@ -90,7 +90,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
-		http.Redirect(w, r, "/users", 301)
+		http.Redirect(w, r, "/users", http.StatusMovedPermanently)
 
 	} else {
 		http.ServeFile(w, r, "../templates/create_users.html")
@@ -106,7 +106,7 @@ func DeleteUserById(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	http.Redirect(w, r, "/users", 301)
+	http.Redirect(w, r, "/users", http.StatusMovedPermanently)
 }
 
 func EditPage(w http.ResponseWriter, r *http.Request) {
@@ -142,7 +142,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
-		http.Redirect(w, r, "/users", 301)
+		http.Redirect(w, r, "/users", http.StatusMovedPermanently)
 
 	}
 }
